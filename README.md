@@ -5,7 +5,7 @@
 
 <img src="https://github.com/user-attachments/assets/c0137936-ba13-4c9b-8324-8c454512ca3d" width="100px">
 
-# Rust SocketCluster protocol v1 server implementation library
+# Rust SocketCluster protocol V1 server library
 
 A scalable SocketCluster WebSocket server implementation as a library, built with Rust using Axum and Tokio.
 
