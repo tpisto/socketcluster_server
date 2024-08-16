@@ -46,7 +46,7 @@ socketcluster_server = "0.1.0"
 Here's a minimal example to get a server up and running:
 
 ```rust
-use socketcluster_server::{create_socketcluster_state, ServerConfig, ws_handler};
+use socketcluster_server::{create_socketcluster_state, ServerConfig, WebSocketSender, ws_handler};
 use axum::{Router, routing::get};
 use tokio::net::TcpListener;
 use std::net::SocketAddr;
@@ -63,7 +63,7 @@ async fn main() {
     };
 
     // Create application state
-    let state = create_socketcluster_state(config.clone());
+    let state = create_socketcluster_state::<WebSocketSender>(config.clone());
 
     // Set up router
     let app = Router::new()
