@@ -182,7 +182,7 @@ For detailed API documentation, run:
 ```
 cargo doc --open
 ```
-or go to https://docs.rs/fuzzy_prefix_search/latest/fuzzy_prefix_search/
+or go to https://docs.rs/socketcluster_server/latest/socketcluster_server/
 
 ## Contributing
 
