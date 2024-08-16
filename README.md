@@ -27,7 +27,7 @@ A scalable SocketCluster WebSocket server implementation as a library, built wit
 - [Usage Examples](#usage-examples)
   - [Setting up the Server](#setting-up-the-server)
   - [Implementing Custom Middleware](#implementing-custom-middleware)
-  - [HTTP Endpoint for Sending Messages directly](#http-endpoint-for-sending-messages)
+  - [HTTP Endpoint for Publishing Messages directly](#http-endpoint-for-publishing-messages-directly)
 - [API Documentation](#api-documentation)
 - [Contributing](#contributing)
 - [License](#license)
@@ -92,7 +92,11 @@ jwt_secret = "your-secret-key"
 
 ## Usage Examples
 
-### HTTP Endpoint for Sending Messages directly
+### HTTP Endpoint for Publishing Messages directly
+
+This server is a library, so you can use it directly with Axum. Here you can
+find an simple example how you can directly operate the socketcluster channels and 
+publish, just using Axum route endpoints.
 
 ```rust
 // ... use ...
