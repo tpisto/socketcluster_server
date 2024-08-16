@@ -2,6 +2,14 @@
 name = "socketcluster_server"
 version = "0.1.0"
 edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/tpisto/socketcluster_server"
+homepage = "https://github.com/tpisto/socketcluster_server"
+description = "SocketCluster protocol V1 server library"
+keywords = [
+    "websocket",
+    "socketcluster",
+]
 
 [dependencies]
 axum = { version = "0.7", features = ["ws"] }
