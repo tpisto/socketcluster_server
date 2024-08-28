@@ -18,7 +18,6 @@ use std::net::SocketAddr;
 use std::sync::atomic::AtomicBool;
 use tokio::sync::Mutex as TokioMutex;
 use tokio::time::interval;
-use tracing::field::debug;
 use tracing::{debug, error, info, warn};
 use uuid::Uuid;
 
