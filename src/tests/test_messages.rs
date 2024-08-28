@@ -201,7 +201,7 @@ mod tests {
                 TestMessage::Send("{\"event\":\"#subscribe\",\"data\":{\"channel\":\"test-channel\"},\"cid\":2}".into()),
                 TestMessage::Expect("{\"rid\":2}".into()),
                 TestMessage::Send("{\"event\":\"#publish\",\"data\":{\"channel\":\"test-channel\",\"data\":\"Hello from client1\"},\"cid\":3}".into()),
-                TestMessage::Expect("{\"event\":\"#publish\",\"data\":\"Hello from client1\"}".into()),
+                TestMessage::Expect("{\"event\":\"#publish\",\"data\":{\"channel\":\"test-channel\",\"data\":\"Hello from client1\"}}".into()),
                 TestMessage::Expect("{\"rid\":3}".into()),
             ],
         );
@@ -214,7 +214,7 @@ mod tests {
                 TestMessage::Expect("{\"data\":{\"id\":\"client2\",\"isAuthenticated\":false,\"pingTimeout\":10000},\"rid\":1}".into()),
                 TestMessage::Send("{\"event\":\"#subscribe\",\"data\":{\"channel\":\"test-channel\"},\"cid\":2}".into()),
                 TestMessage::Expect("{\"rid\":2}".into()),
-                TestMessage::Expect("{\"event\":\"#publish\",\"data\":\"Hello from client1\"}".into()),
+                TestMessage::Expect("{\"event\":\"#publish\",\"data\":{\"channel\":\"test-channel\",\"data\":\"Hello from client1\"}}".into()),
             ],
         );
 
@@ -257,10 +257,10 @@ mod tests {
                 TestMessage::Send("{\"event\":\"#subscribe\",\"data\":{\"channel\":\"channel2\"},\"cid\":3}".into()),
                 TestMessage::Expect("{\"rid\":3}".into()),
                 TestMessage::Send("{\"event\":\"#publish\",\"data\":{\"channel\":\"channel1\",\"data\":\"Hello channel1\"},\"cid\":4}".into()),
-                TestMessage::Expect("{\"event\":\"#publish\",\"data\":\"Hello channel1\"}".into()),
+                TestMessage::Expect("{\"event\":\"#publish\",\"data\":{\"channel\":\"channel1\",\"data\":\"Hello channel1\"}}".into()),
                 TestMessage::Expect("{\"rid\":4}".into()),
                 TestMessage::Send("{\"event\":\"#publish\",\"data\":{\"channel\":\"channel2\",\"data\":\"Hello channel2\"},\"cid\":5}".into()),
-                TestMessage::Expect("{\"event\":\"#publish\",\"data\":\"Hello channel2\"}".into()),
+                TestMessage::Expect("{\"event\":\"#publish\",\"data\":{\"channel\":\"channel2\",\"data\":\"Hello channel2\"}}".into()),
                 TestMessage::Expect("{\"rid\":5}".into()),
             ],
         );
@@ -272,7 +272,7 @@ mod tests {
                 TestMessage::Expect("{\"data\":{\"id\":\"client2\",\"isAuthenticated\":false,\"pingTimeout\":10000},\"rid\":1}".into()),
                 TestMessage::Send("{\"event\":\"#subscribe\",\"data\":{\"channel\":\"channel1\"},\"cid\":2}".into()),
                 TestMessage::Expect("{\"rid\":2}".into()),
-                TestMessage::Expect("{\"event\":\"#publish\",\"data\":\"Hello channel1\"}".into()),
+                TestMessage::Expect("{\"event\":\"#publish\",\"data\":{\"channel\":\"channel1\",\"data\":\"Hello channel1\"}}".into()),
                 // Should not receive message from channel2
             ],
         );
@@ -294,7 +294,7 @@ mod tests {
                 TestMessage::Expect("{\"rid\":2}".into()),
                 // Publish and receive
                 TestMessage::Send("{\"event\":\"#publish\",\"data\":{\"channel\":\"test-channel\",\"data\":\"Message 1\"},\"cid\":3}".into()),
-                TestMessage::Expect("{\"event\":\"#publish\",\"data\":\"Message 1\"}".into()),
+                TestMessage::Expect("{\"event\":\"#publish\",\"data\":{\"channel\":\"test-channel\",\"data\":\"Message 1\"}}".into()),
                 TestMessage::Expect("{\"rid\":3}".into()),
                 // Unsubscribe
                 TestMessage::Send("{\"event\":\"#unsubscribe\",\"data\":\"test-channel\",\"cid\":4}".into()),
@@ -307,7 +307,7 @@ mod tests {
                 TestMessage::Expect("{\"rid\":6}".into()),
                 // Publish and receive again
                 TestMessage::Send("{\"event\":\"#publish\",\"data\":{\"channel\":\"test-channel\",\"data\":\"Message 3\"},\"cid\":7}".into()),
-                TestMessage::Expect("{\"event\":\"#publish\",\"data\":\"Message 3\"}".into()),
+                TestMessage::Expect("{\"event\":\"#publish\",\"data\":{\"channel\":\"test-channel\",\"data\":\"Message 3\"}}".into()),
                 TestMessage::Expect("{\"rid\":7}".into()),
             ],
         );

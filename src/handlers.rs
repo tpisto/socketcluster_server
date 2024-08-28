@@ -18,6 +18,7 @@ use std::net::SocketAddr;
 use std::sync::atomic::AtomicBool;
 use tokio::sync::Mutex as TokioMutex;
 use tokio::time::interval;
+use tracing::field::debug;
 use tracing::{debug, error, info, warn};
 use uuid::Uuid;
 
@@ -392,8 +393,9 @@ async fn handle_subscribe<S: Sender>(socket_id: SocketId, packet: Packet, state:
 
 async fn handle_publish<S: Sender>(socket_id: SocketId, packet: Packet, state: &AppState<S>) {
     debug!("Handling publish for {}: {:?}", socket_id, packet);
-    if let Some(Value::Object(data)) = packet.data {
-        if let (Some(Value::String(channel)), Some(message)) =
+    if let Some(data) = packet.data {
+        let packet_data = data.clone();
+        if let (Some(Value::String(channel)), Some(_message)) =
             (data.get("channel"), data.get("data"))
         {
             let subscribers = {
@@ -403,7 +405,7 @@ async fn handle_publish<S: Sender>(socket_id: SocketId, packet: Packet, state: &
             if let Some(subscribers) = subscribers {
                 let publish_event = Packet {
                     event: Some(Event::Publish),
-                    data: Some(message.clone()),
+                    data: Some(packet_data),
                     ..Default::default()
                 };
 
